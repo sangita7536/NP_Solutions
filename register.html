@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - NP Solutions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>NP Solutions</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.php">Home</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="auth-section">
+        <div class="auth-container">
+            <h2>Create Account</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}"
+                        title="Enter a valid 10-digit phone number" required>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="cpassword">Confirm Password</label>
+                    <input type="password" id="cpassword" name="cpassword" required>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="terms" required> I agree to the Terms and Conditions
+                    </label>
+                </div>
+                <button type="submit" class="submit-btn">Register</button>
+            </form>
+            <div class="auth-links">
+                <p>Already have an account? <a href="login.html">Login here</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>NP Solutions</h3>
+                <p>Your trusted partner for computer solutions and security services.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 NP Solutions. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Client-side validation and form submission using fetch
+        document.getElementById('register-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const password = document.getElementById('password').value;
+            const cpassword = document.getElementById('cpassword').value;
+
+            if (password !== cpassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+            fetch('register.php', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+                if (data.includes("Registered successfully")) {
+                    window.location.href = 'login.html';
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                alert('An error occurred during registration. Please try again.');
+            });
+        });
+    </script>
+</body>
+</html>
