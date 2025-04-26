@@ -12,17 +12,15 @@ An online platform for purchasing computers, requesting repairs, and booking CCT
 - Service booking system
 
 ## Tech Stack
-- Frontend: React.js
-- Backend: Node.js with Express
-- Database: MongoDB
-- Styling: Tailwind CSS
+- Frontend: HTML CSS Js
+- Backend: PHP
+- Database: MySql
 
 ## Setup Instructions
 
 ### Prerequisites
-- Node.js (v14 or higher)
-- MongoDB
-- npm or yarn
+- Xampp
+- MySql
 
 ### Installation
 
